@@ -17,15 +17,17 @@ app.get("/" + base, (_, res) => {
 })
 
 const server = app.listen(0, async _ => {
-    console.log(`Listening at http://localhost:${server.address().port}`)
+    console.log("Working...")
     const url = await ngrok.connect(server.address().port)
     axios
         .post('https://cdn.hackclub.dev/api/new', [url + '/' + base])
         .then(res => {
             console.log(res.data[0])
+            process.exit(0)
         })
         .catch(error => {
             console.error(error)
+            process.exit(1)
         })
 })
 
