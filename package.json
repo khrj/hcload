@@ -1,0 +1,13 @@
+{
+  "name": "hcload",
+  "version": "1.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "commander": "^6.1.0",
+    "express": "^4.17.1",
+    "ngrok": "^3.3.0"
+  },
+  "bin": "index.js"
+}
