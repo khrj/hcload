@@ -8,7 +8,7 @@ const ngrok = require('ngrok')
 program.version(require(join(__dirname, 'package')).version)
 program
     .option('-f, --files <file...>', 'Path to file(s) to upload')
-    .option('-u, --urls <url...>', 'Path to url(s) to host on CDN (WIP)')
+    .option('-u, --urls <url...>', 'URL(s) to host on CDN')
     .option('-s, --silent', 'Don\'t print "Working..."')
 
 program.parse(process.argv)
@@ -19,11 +19,13 @@ if (!program.files && !program.urls) {
 
 let baseMap = {}
 
-program.files.forEach(file => {
-    const fullPath = resolve(join(file))
-    const base = parse(fullPath).base
-    baseMap[base] = fullPath
-})
+if (program.files) {
+    program.files.forEach(file => {
+        const fullPath = resolve(join(file))
+        const base = parse(fullPath).base
+        baseMap[base] = fullPath
+    })
+}
 
 app.get("/*", (req, res) => {
     res.sendFile(baseMap[decodeURI(req.path.substring(1))])
@@ -35,9 +37,16 @@ const server = app.listen(0, async _ => {
     }
     const ngrokUrl = await ngrok.connect(server.address().port)
     let data = []
-    Object.keys(baseMap).forEach(base => {
-        data.push(ngrokUrl + '/' + base)
-    })
+
+    if (program.files) {
+        Object.keys(baseMap).forEach(base => {
+            data.push(ngrokUrl + '/' + base)
+        })
+    }
+
+    if (program.urls) {
+        data.push(...program.urls)
+    }
 
     axios
         .post('https://cdn.hackclub.dev/api/new', data)
