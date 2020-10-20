@@ -6,23 +6,45 @@ const app = require('express')()
 const ngrok = require('ngrok')
 
 program.version(require(join(__dirname, 'package')).version)
-program.requiredOption('-f, --file <file>', 'Path to file to upload')
+program
+    .option('-f, --files <file...>', 'Path to file(s) to upload')
+    .option('-u, --urls <url...>', 'Path to url(s) to host on CDN (WIP)')
+    .option('-s, --silent', 'Don\'t print "Working..."')
+
 program.parse(process.argv)
 
-let fullPath = resolve('./' + program.file)
-let base = parse(fullPath).base
+if (!program.files && !program.urls) {
+    program.help()
+}
 
-app.get("/" + base, (_, res) => {
-    res.sendFile(fullPath)
+let baseMap = {}
+
+program.files.forEach(file => {
+    const fullPath = resolve(join(file))
+    const base = parse(fullPath).base
+    baseMap[base] = fullPath
+})
+
+app.get("/*", (req, res) => {
+    res.sendFile(baseMap[decodeURI(req.path.substring(1))])
 })
 
 const server = app.listen(0, async _ => {
-    console.log("Working...")
-    const url = await ngrok.connect(server.address().port)
+    if (!program.silent) {
+        console.log("Working...")
+    }
+    const ngrokUrl = await ngrok.connect(server.address().port)
+    let data = []
+    Object.keys(baseMap).forEach(base => {
+        data.push(ngrokUrl + '/' + base)
+    })
+
     axios
-        .post('https://cdn.hackclub.dev/api/new', [url + '/' + base])
+        .post('https://cdn.hackclub.dev/api/new', data)
         .then(res => {
-            console.log(res.data[0])
+            res.data.forEach(line => {
+                console.log(line)
+            })
             process.exit(0)
         })
         .catch(error => {
@@ -30,4 +52,3 @@ const server = app.listen(0, async _ => {
             process.exit(1)
         })
 })
-
