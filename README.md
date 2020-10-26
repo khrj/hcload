@@ -1,27 +1,42 @@
 # hcload
 Upload files to Hackclub CDN from your CLI
 
-# Quickstart
-```
-npx hcload -f filename.txt
-```
+Contents:  
+- [Deno](#Deno)
+- [Node](#Node)
 
-# Installation
-```
-npm install -g hcload
-```
+# Deno
+Make sure you have [deno](https://deno.land/)
 
-or 
+## Quickstart
 
 ```
-yarn global add hcload
+deno run --unstable -A https://raw.githubusercontent.com/KhushrajRathod/hcload/main/hcload.ts
 ```
 
-then run
+## Installation
+```
+deno install --unstable -A https://raw.githubusercontent.com/KhushrajRathod/hcload/main/hcload.ts
+```
+
+then run (see [usage](#Usage))
 
 ```
-hcload -f filename.txt
+hcload -f filename.mp3
 ```
+
+## Permissions
+Needs the following
+
+- --allow-env 
+- --allow-net 
+- --allow-read=~/.ngrok-deno 
+- --allow-write=~/.ngrok-deno 
+- --allow-run
+
+Or just
+
+- -A
 
 # Advantages
 
@@ -33,14 +48,21 @@ hcload -f filename.txt
 # Usage
 
 ```
-Usage: hcload [options]
+Usage: hcload -f [files...] -u [urls...]
 
 Options:
-  -V, --version          output the version number
-  -f, --files <file...>  Path to file(s) to upload
-  -u, --urls <url...>    URL(s) to host on CDN
-  -s, --silent           Don't print "Working..."
-  -h, --help             display help for command
+      --help     Show help                                             [boolean]
+      --version  Show version number                                   [boolean]
+  -f, --files    Path to file(s) to upload                               [array]
+  -u, --urls     URL(s) to host on CDN                                   [array]
+  -s, --silent   Don't print "Working..."                              [boolean]
+
+Examples:
+  hcload -f myPic.png                                      Upload one file
+  hcload -f myPic.png vid.mp4 song.mp3                     Upload multiple files
+  hcload -u https://b.me/foo.mp3                           Upload from one URL
+  hcload -u https://a.me/foo.mp3 https://a.me/foo.jpg      Upload from multiple URLs
+  hcload -u https://a.me/foo.mp3 -f myPic.png myMusic.mp3  Upload from file[s] and URL[s]
 ```
 
 # Examples
@@ -66,4 +88,15 @@ hcload -f 0.dmg -u https://www.google.com/images/branding/googlelogo/2x/googlelo
 Upload silently (without printing "Working...") (for scripts)
 ```
 hcload -sf 0.mp4
+```
+
+# Node
+
+> Note: The node.js version is not maintained. Source is available in git history
+
+```
+npx hcload -f filename.txt
+# or
+npm install -g hcload
+hcload -f filename.txt
 ```
