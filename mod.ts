@@ -1,7 +1,7 @@
 import { connect, disconnect } from 'https://deno.land/x/ngrok@2.1.0/mod.ts'
-import { Application, send } from 'https://deno.land/x/oak/mod.ts'
+import { Application, send } from 'https://deno.land/x/oak@v6.3.1/mod.ts'
 import { getFreePort } from 'https://deno.land/x/free_port@v1.2.0/mod.ts'
-import * as path from "https://deno.land/std/path/mod.ts";
+import * as path from "https://deno.land/std@0.75.0/path/mod.ts";
 import ky from 'https://unpkg.com/ky/index.js'
 
 type hcloadParams = {
@@ -41,7 +41,7 @@ export default function (options: hcloadParams): Promise<string[]> {
             }
 
             // @ts-ignore
-            let response = await ky.post('https://cdn.hackclub.dev/api/new', { json: data }).json()
+            let response = await ky.post('https://cdn.hackclub.com/api/new', { json: data }).json()
             disconnect()
             return resolve(response)
         })

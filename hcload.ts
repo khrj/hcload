@@ -1,6 +1,6 @@
 import Yargs from "https://deno.land/x/yargs/deno.ts";
-import * as path from "https://deno.land/std/path/mod.ts"
-import hcload from "https://deno.land/x/hcload/mod.ts"
+import * as path from "https://deno.land/std@0.75.0/path/mod.ts"
+import hcload from "./mod.ts"
 
 const yargs = Yargs(Deno.args)
 const args = yargs
