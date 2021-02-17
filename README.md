@@ -49,7 +49,7 @@ Only one parameter is nessecary
 
 Make sure you have [deno](https://deno.land/)
 
-## Usage
+## Installation
 
 ```bash
 deno install --unstable -A https://deno.land/x/hcload/hcload.ts
