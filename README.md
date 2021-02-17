@@ -99,3 +99,7 @@ Examples:
 [![Stargazers repo roster for @KhushrajRathod/hcload](https://reporoster.com/stars/KhushrajRathod/hcload)](https://github.com/KhushrajRathod/hcload/stargazers)
 
 [![Forkers repo roster for @KhushrajRathod/hcload](https://reporoster.com/forks/KhushrajRathod/hcload)](https://github.com/KhushrajRathod/hcload/network/members)
+
+## Related
+
+- [Deno modules](https://github.com/KhushrajRathod/denoModules)
