@@ -1,28 +1,37 @@
 # hcload
-Upload files to Hackclub CDN from your CLI
 
-Contents:  
+Upload files to Hackclub CDN via Deno and your CLI
+
+Contents:
+
+- [Module](#API)
 - [CLI](#CLI)
-- [API](#API)
-- [(Deprecated) Node](#Node)
 
-# Advantages
+# API
 
-- It's convenient
-- **Anonymous** - not tied to your slack username
-- **Kinda private** - not viewable generally in #cdn, but can probably still be seen by Hack club staff
-- Upload directly from a URL
+hcload offers a convenient deno API
 
-# CLI
-Make sure you have [deno](https://deno.land/)
-
-## Quickstart
-
-```bash
-deno run --unstable -A https://deno.land/x/hcload/hcload.ts
+```ts
+import hcload from "https://deno.land/x/hcload/mod.ts"
+const urls: string[] = await hcload({
+    files: fullPaths,
+    urls: YourUrls,
+})
 ```
 
-## Installation
+Where
+
+- fullPaths is an array of complete filesystem paths to files
+- urls is an array of urls
+
+Only one parameter is nessecary, the other is optional
+
+# CLI
+
+Make sure you have [deno](https://deno.land/)
+
+## Usage
+
 ```bash
 deno install --unstable -A https://deno.land/x/hcload/hcload.ts
 ```
@@ -34,12 +43,13 @@ hcload -f filename.mp3
 ```
 
 ## Permissions
+
 Needs the following
 
-- --allow-env 
-- --allow-net 
-- --allow-read=~/.ngrok-deno 
-- --allow-write=~/.ngrok-deno 
+- --allow-env
+- --allow-net
+- --allow-read=~/.ngrok-deno
+- --allow-write=~/.ngrok-deno
 - --allow-run
 
 Or just
@@ -64,33 +74,4 @@ Examples:
   hcload -u https://b.me/foo.mp3                           Upload from one URL
   hcload -u https://a.me/foo.mp3 https://a.me/foo.jpg      Upload from multiple URLs
   hcload -u https://a.me/foo.mp3 -f myPic.png myMusic.mp3  Upload from file[s] and URL[s]
-```
-
-# API
-hcload offers a convenient deno API.
-
-```ts
-import hcload from "https://deno.land/x/hcload/mod.ts"
-const urls: string[] = await hcload({
-    files: fullPaths,
-    urls: YourUrls
-})
-```
-
-Where
-
-- fullPaths is an array of complete filesystem paths to files
-- urls is an array of urls
-
-Only one parameter is nessecary, the other is optional
-
-# Node
-
-> Note: The node.js version is not maintained. Source is available in git history
-
-```bash
-npx hcload -f filename.txt
-# or
-npm install -g hcload
-hcload -f filename.txt
 ```

@@ -1,17 +1,14 @@
-import { connect, disconnect } from 'https://deno.land/x/ngrok@2.2.3/mod.ts'
-import { Application, send } from 'https://deno.land/x/oak@v6.3.1/mod.ts'
-import * as path from "https://deno.land/std@0.75.0/path/mod.ts";
-import ky from 'https://unpkg.com/ky/index.js'
+import { path, connectNgrok, disconnectNgrok, Application, send } from "./deps.ts"
 
 type hcloadParams = {
-    files?: string[],
+    files?: string[]
     urls?: string[]
 }
 
 export default function (options: hcloadParams): Promise<string[]> {
-    return new Promise(async resolve => {
+    return new Promise(resolve => {
         if (!(options.files || options.urls)) throw "Missing params"
-        let baseMap: any = {}
+        const baseMap: Record<string, string> = {}
 
         if (options.files) {
             options.files.forEach((file: string) => {
@@ -20,18 +17,18 @@ export default function (options: hcloadParams): Promise<string[]> {
         }
 
         const app = new Application()
-        app.use(async (context: any) => {
-            await send(context, baseMap[decodeURI(context.request.url.pathname.substring(1))], { root: '/' })
+        app.use(async (context) => {
+            await send(context, baseMap[decodeURI(context.request.url.pathname.substring(1))], { root: "/" })
         })
 
         app.addEventListener("listen", async ({ port }) => {
-            const ngrokUrl = "https://" + await connect({ protocol: 'http', port })
+            const ngrokUrl = "https://" + await connectNgrok({ protocol: "http", port })
 
-            let data = []
+            const data = []
 
             if (options.files) {
                 Object.keys(baseMap).forEach(base => {
-                    data.push(ngrokUrl + '/' + base)
+                    data.push(ngrokUrl + "/" + base)
                 })
             }
 
@@ -39,12 +36,17 @@ export default function (options: hcloadParams): Promise<string[]> {
                 data.push(...options.urls)
             }
 
-            // @ts-ignore
-            let response = await ky.post('https://cdn.hackclub.com/api/new', { json: data }).json()
-            disconnect()
-            return resolve(response)
+            const response = await fetch("https://cdn.hackclub.com/api/new", {
+                method: "POST",
+                body: JSON.stringify(data),
+            })
+
+            const uploadedURLs = await response.json()
+
+            disconnectNgrok()
+            return resolve(uploadedURLs)
         })
 
-        await app.listen({ port: 20845 })
+        app.listen({ port: 20845 })
     })
 }

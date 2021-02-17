@@ -1,8 +1,8 @@
-import Yargs from "https://deno.land/x/yargs@v16.1.1-deno/deno.ts"
-import * as path from "https://deno.land/std@0.75.0/path/mod.ts"
+import { path, Yargs } from './deps.ts'
 import hcload from "./mod.ts"
 
-const yargs = Yargs(Deno.args)
+// deno-lint-ignore no-explicit-any
+const yargs: any = Yargs(Deno.args)
 const args = yargs
     .usage("Usage: hcload -f [files...] -u [urls...]")
     .option("files", {
@@ -20,15 +20,15 @@ const args = yargs
         description: `Don't print "Working..."`,
         type: "boolean",
     })
-    .example('hcload -f myPic.png', 'Upload one file')
-    .example('hcload -f myPic.png vid.mp4 song.mp3', 'Upload multiple files')
-    .example('hcload -u https://b.me/foo.mp3 ', 'Upload from one URL')
-    .example('hcload -u https://a.me/foo.mp3 https://a.me/foo.jpg', 'Upload from multiple URLs')
-    .example('hcload -u https://a.me/foo.mp3 -f myPic.png myMusic.mp3', 'Upload from file[s] and URL[s]')
+    .example("hcload -f myPic.png", "Upload one file")
+    .example("hcload -f myPic.png vid.mp4 song.mp3", "Upload multiple files")
+    .example("hcload -u https://b.me/foo.mp3 ", "Upload from one URL")
+    .example("hcload -u https://a.me/foo.mp3 https://a.me/foo.jpg", "Upload from multiple URLs")
+    .example("hcload -u https://a.me/foo.mp3 -f myPic.png myMusic.mp3", "Upload from file[s] and URL[s]")
     .argv
 
 if (!args.files && !args.urls) {
-    yargs.showHelp('error')
+    yargs.showHelp("error")
     Deno.exit(1)
 }
 
@@ -39,7 +39,7 @@ if (!args.silent) {
 const fullPaths = args.files.map((file: string) => path.resolve(file))
 const urls: string[] = await hcload({
     files: fullPaths,
-    urls: args.urls
+    urls: args.urls,
 })
 
 urls.forEach(url => {
