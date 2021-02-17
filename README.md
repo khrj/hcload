@@ -77,7 +77,7 @@ Or just
 
 ## Usage
 
-```bash
+```
 Usage: hcload -f [files...] -u [urls...]
 
 Options:
