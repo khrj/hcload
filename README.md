@@ -24,13 +24,14 @@ Table of contents:
 
 - [Module](#API)
 - [CLI](#CLI)
+- [Supporters](#Supporters)
 
 # API
 
 hcload offers a convenient deno API
 
 ```ts
-import hcload from "https://deno.land/x/hcload@1.2.0/mod.ts"
+import hcload from "https://deno.land/x/hcload@1.2.1/mod.ts"
 const urls: string[] = await hcload({
     files: fullPaths,
     urls: YourUrls,
