@@ -10,7 +10,7 @@ Contents:
 
 - It's convenient
 - **Anonymous** - not tied to your slack username
-- **Kinda private** - not viewable generally in #cdn, but can probably still be seen by HackClub staff
+- **Kinda private** - not viewable generally in #cdn, but can probably still be seen by Hack club staff
 - Upload directly from a URL
 
 # CLI
