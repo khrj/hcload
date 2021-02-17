@@ -93,3 +93,9 @@ Examples:
   hcload -u https://a.me/foo.mp3 https://a.me/foo.jpg      Upload from multiple URLs
   hcload -u https://a.me/foo.mp3 -f myPic.png myMusic.mp3  Upload from file[s] and URL[s]
 ```
+
+## Supporters
+
+[![Stargazers repo roster for @KhushrajRathod/hcload](https://reporoster.com/stars/KhushrajRathod/hcload)](https://github.com/KhushrajRathod/hcload/stargazers)
+
+[![Forkers repo roster for @KhushrajRathod/hcload](https://reporoster.com/forks/KhushrajRathod/hcload)](https://github.com/KhushrajRathod/hcload/network/members)
