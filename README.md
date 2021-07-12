@@ -5,12 +5,12 @@
         <b>Upload files to the Hack club CDN via Deno and your CLI</b>
     </p>
     <p>
-        <img alt="build status" src="https://img.shields.io/github/workflow/status/KhushrajRathod/hcload/Deno?label=checks" >
-        <img alt="language" src="https://img.shields.io/github/languages/top/KhushrajRathod/hcload" >
-        <img alt="code size" src="https://img.shields.io/github/languages/code-size/KhushrajRathod/hcload">
-        <img alt="issues" src="https://img.shields.io/github/issues/KhushrajRathod/hcload" >
-        <img alt="license" src="https://img.shields.io/github/license/KhushrajRathod/hcload">
-        <img alt="version" src="https://img.shields.io/github/v/release/KhushrajRathod/hcload">
+        <img alt="build status" src="https://img.shields.io/github/workflow/status/khrj/hcload/Deno?label=checks" >
+        <img alt="language" src="https://img.shields.io/github/languages/top/khrj/hcload" >
+        <img alt="code size" src="https://img.shields.io/github/languages/code-size/khrj/hcload">
+        <img alt="issues" src="https://img.shields.io/github/issues/khrj/hcload" >
+        <img alt="license" src="https://img.shields.io/github/license/khrj/hcload">
+        <img alt="version" src="https://img.shields.io/github/v/release/khrj/hcload">
     </p>
     <p>
         <b><a href="https://deno.land/x/hcload">View on deno.land</a></b>
@@ -97,10 +97,10 @@ Examples:
 
 ## Supporters
 
-[![Stargazers repo roster for @KhushrajRathod/hcload](https://reporoster.com/stars/KhushrajRathod/hcload)](https://github.com/KhushrajRathod/hcload/stargazers)
+[![Stargazers repo roster for @khrj/hcload](https://reporoster.com/stars/khrj/hcload)](https://github.com/khrj/hcload/stargazers)
 
-[![Forkers repo roster for @KhushrajRathod/hcload](https://reporoster.com/forks/KhushrajRathod/hcload)](https://github.com/KhushrajRathod/hcload/network/members)
+[![Forkers repo roster for @khrj/hcload](https://reporoster.com/forks/khrj/hcload)](https://github.com/khrj/hcload/network/members)
 
 ## Related
 
-- [Deno modules](https://github.com/KhushrajRathod/denoModules)
+- [Deno modules](https://github.com/khrj/deno-modules)
