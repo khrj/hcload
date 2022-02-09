@@ -13,6 +13,9 @@
         <img alt="version" src="https://img.shields.io/github/v/release/khrj/hcload">
     </p>
     <p>
+        <b>Tested on Deno 1.18.1</b>
+    </p>
+    <p>
         <b><a href="https://deno.land/x/hcload">View on deno.land</a></b>
     </p>
     <br>
@@ -31,7 +34,7 @@ Table of contents:
 hcload offers a convenient deno API
 
 ```ts
-import hcload from "https://deno.land/x/hcload@1.2.1/mod.ts"
+import hcload from "https://deno.land/x/hcload@1.3.1/mod.ts"
 const urls: string[] = await hcload({
     files: fullPaths,
     urls: YourUrls,

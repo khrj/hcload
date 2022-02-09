@@ -1,4 +1,4 @@
-import { path, Yargs } from './deps.ts'
+import { path, Yargs } from "./deps.ts"
 import hcload from "./mod.ts"
 
 // deno-lint-ignore no-explicit-any
